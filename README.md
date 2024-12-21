@@ -1,6 +1,6 @@
 # Multi-Tenancy
 
-This is a simple implementation of shared database multi-tenancy using the [FinBuckle.MultiTenant](https://github.com/Finbuckle/Finbuckle.MultiTenant) library.
+This is a simple implementation of shared database multi-tenancy using the [Finbuckle.MultiTenant](https://github.com/Finbuckle/Finbuckle.MultiTenant) library.
 
 ## Prerequisites
 
