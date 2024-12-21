@@ -1,0 +1,16 @@
+﻿services:
+  multitenancy:
+    image: multitenancy
+    build:
+      context: .
+      dockerfile: src/MultiTenancy/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=VerySecurePassword123@!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:
+      - "5000:80"
+      - "44362:443"
+    volumes:
+      - ${USERPROFILE}\.aspnet\https:/https/:ro
