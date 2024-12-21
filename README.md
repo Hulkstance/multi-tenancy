@@ -5,7 +5,7 @@ This is a simple implementation of shared database multi-tenancy using the [Finb
 ## Prerequisites
 
 Ensure the following tools are installed:
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 - [Entity Framework Core CLI](https://learn.microsoft.com/en-us/ef/core/cli/dotnet#installing-the-tools) (`dotnet ef`)
 
 ## Migrations
