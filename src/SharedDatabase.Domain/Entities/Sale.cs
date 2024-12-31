@@ -2,10 +2,10 @@
 
 public class Sale
 {
-    public required int Id { get; set; }
+    public required Guid Id { get; set; }
     public required decimal Amount { get; set; }
     public required DateTime CreatedAt { get; set; }
 
-    public required int CompanyId { get; set; }
+    public required Guid CompanyId { get; set; }
     public required Company Company { get; set; }
 }

@@ -4,7 +4,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D414431F-96B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED5AA19C-2832-440A-9C37-D0AF9A0C050E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabase", "src\SharedDatabase\SharedDatabase.csproj", "{04100435-E8BF-41E1-92CC-64ED9C802A98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabase.Api", "src\SharedDatabase.Api\SharedDatabase.Api.csproj", "{04100435-E8BF-41E1-92CC-64ED9C802A98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E94C4109-DC6C-45D0-A312-2FF7E38F7855}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,6 +24,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabase.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabase.Domain", "src\SharedDatabase.Domain\SharedDatabase.Domain.csproj", "{ED1E8A55-2BF2-48CC-8918-1C0FA3DC9745}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabase.Application", "src\SharedDatabase.Application\SharedDatabase.Application.csproj", "{F26D4D84-64D8-44E0-869C-28F6B6A4BB66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{D4F2286E-3703-4638-922C-8FBBD03C0211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Api", "src\Identity.Api\Identity.Api.csproj", "{E208248A-436E-47C2-BFCF-A66250463C47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +40,9 @@ Global
 		{04100435-E8BF-41E1-92CC-64ED9C802A98} = {5CB8562B-3AE5-4A70-B316-0E7EFBC5AF45}
 		{8E08266C-D1D0-49C8-9B48-5DB73399BB04} = {5CB8562B-3AE5-4A70-B316-0E7EFBC5AF45}
 		{ED1E8A55-2BF2-48CC-8918-1C0FA3DC9745} = {5CB8562B-3AE5-4A70-B316-0E7EFBC5AF45}
+		{F26D4D84-64D8-44E0-869C-28F6B6A4BB66} = {5CB8562B-3AE5-4A70-B316-0E7EFBC5AF45}
+		{D4F2286E-3703-4638-922C-8FBBD03C0211} = {D414431F-96B6-46ED-9FCE-96E2E7132922}
+		{E208248A-436E-47C2-BFCF-A66250463C47} = {D4F2286E-3703-4638-922C-8FBBD03C0211}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{04100435-E8BF-41E1-92CC-64ED9C802A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +57,13 @@ Global
 		{ED1E8A55-2BF2-48CC-8918-1C0FA3DC9745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED1E8A55-2BF2-48CC-8918-1C0FA3DC9745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED1E8A55-2BF2-48CC-8918-1C0FA3DC9745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F26D4D84-64D8-44E0-869C-28F6B6A4BB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F26D4D84-64D8-44E0-869C-28F6B6A4BB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F26D4D84-64D8-44E0-869C-28F6B6A4BB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F26D4D84-64D8-44E0-869C-28F6B6A4BB66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E208248A-436E-47C2-BFCF-A66250463C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E208248A-436E-47C2-BFCF-A66250463C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E208248A-436E-47C2-BFCF-A66250463C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E208248A-436E-47C2-BFCF-A66250463C47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

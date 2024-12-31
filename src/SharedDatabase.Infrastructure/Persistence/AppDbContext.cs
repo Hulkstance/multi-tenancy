@@ -15,6 +15,9 @@ public class AppDbContext(IMultiTenantContextAccessor multiTenantContextAccessor
     public DbSet<Company> Companies => Set<Company>();
     public DbSet<Sale> Sales => Set<Sale>();
 
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+    //    optionsBuilder.LogTo(action: Console.WriteLine);
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

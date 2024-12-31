@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SharedDatabase.Application.MultiTenancy;
+using SharedDatabase.Infrastructure.Auth;
 
 namespace SharedDatabase.Infrastructure.MultiTenancy;
 
-public static class ServiceCollectionExtensions
+internal static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddMultiTenancy(this IServiceCollection services)
+    internal static IServiceCollection AddMultiTenancy(this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(services);
 
@@ -30,8 +32,10 @@ public static class ServiceCollectionExtensions
                 });
             })
             .AddMultiTenant<AppTenantInfo>()
-                .WithHeaderStrategy(MultiTenancyConstants.TenantIdHeader)
+                .WithClaimStrategy(CustomClaimTypes.TenantIdentifier)
                 .WithEFCoreStore<TenantDbContext, AppTenantInfo>();
+
+        // TODO: services.AddScoped<ICurrentTenantService, CurrentTenantService>();
 
         return services;
     }

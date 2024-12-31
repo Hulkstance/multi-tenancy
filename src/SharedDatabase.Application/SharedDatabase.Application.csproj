@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>SharedDatabase.Application</RootNamespace>
+    <AssemblyName>SharedDatabase.Application</AssemblyName>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\SharedDatabase.Domain\SharedDatabase.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

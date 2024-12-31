@@ -1,18 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <RootNamespace>SharedDatabase.Infrastructure</RootNamespace>
+    <AssemblyName>SharedDatabase.Infrastructure</AssemblyName>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Finbuckle.MultiTenant.AspNetCore" />
     <PackageReference Include="Finbuckle.MultiTenant.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharedDatabase.Domain\SharedDatabase.Domain.csproj" />
+    <ProjectReference Include="..\SharedDatabase.Application\SharedDatabase.Application.csproj" />
   </ItemGroup>
 
 </Project>

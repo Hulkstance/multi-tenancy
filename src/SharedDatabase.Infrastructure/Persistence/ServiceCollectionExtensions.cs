@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace SharedDatabase.Infrastructure.Persistence;
 
-public static class ServiceCollectionExtensions
+internal static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddPersistence(this IServiceCollection services)
+    internal static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         ArgumentNullException.ThrowIfNull(services);
 
@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
                     .CommandTimeout(10_000);
                 x.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
             });
+            options.EnableSensitiveDataLogging();
         });
 
         return services;
