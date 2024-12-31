@@ -35,7 +35,7 @@ internal static class ServiceCollectionExtensions
                 .WithClaimStrategy(CustomClaimTypes.TenantIdentifier)
                 .WithEFCoreStore<TenantDbContext, AppTenantInfo>();
 
-        // TODO: services.AddScoped<ICurrentTenantService, CurrentTenantService>();
+        services.AddScoped<ICurrentTenantService, CurrentTenantService>();
 
         return services;
     }

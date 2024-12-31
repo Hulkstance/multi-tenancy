@@ -1,9 +1,10 @@
-﻿using SharedDatabase.Application.MultiTenancy;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using SharedDatabase.Application.MultiTenancy;
 
 namespace SharedDatabase.Infrastructure.MultiTenancy;
 
-internal class CurrentTenantService(AppTenantInfo currentTenant) : ICurrentTenantService
+internal class CurrentTenantService(IMultiTenantContextAccessor<AppTenantInfo> multiTenantContextAccessor) : ICurrentTenantService
 {
-    public string Id => currentTenant.Id!;
-    public string Identifier => currentTenant.Identifier!;
+    public string Id => multiTenantContextAccessor.MultiTenantContext.TenantInfo?.Id!;
+    public string Identifier => multiTenantContextAccessor.MultiTenantContext.TenantInfo?.Identifier!;
 }
