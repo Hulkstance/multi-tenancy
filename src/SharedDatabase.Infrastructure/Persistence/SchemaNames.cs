@@ -1,4 +1,4 @@
-﻿namespace SharedDatabase.Infrastructure;
+﻿namespace SharedDatabase.Infrastructure.Persistence;
 
 internal static class SchemaNames
 {

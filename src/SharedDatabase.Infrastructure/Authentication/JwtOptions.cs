@@ -1,4 +1,4 @@
-﻿namespace SharedDatabase.Infrastructure.Auth.Jwt;
+﻿namespace SharedDatabase.Infrastructure.Authentication;
 
 public class JwtOptions
 {

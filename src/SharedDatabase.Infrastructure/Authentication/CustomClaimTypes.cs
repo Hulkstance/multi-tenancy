@@ -1,4 +1,4 @@
-﻿namespace SharedDatabase.Infrastructure.Auth;
+﻿namespace SharedDatabase.Infrastructure.Authentication;
 
 public static class CustomClaimTypes
 {

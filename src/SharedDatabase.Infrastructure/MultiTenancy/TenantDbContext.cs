@@ -1,9 +1,10 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore.Stores.EFCoreStore;
 using Microsoft.EntityFrameworkCore;
+using SharedDatabase.Infrastructure.Persistence;
 
 namespace SharedDatabase.Infrastructure.MultiTenancy;
 
-// This database context is not itself multi-tenant,
+// This database context itself is not multi-tenant,
 // but rather it globally contains the details of each tenant.
 // It will often be a standalone database separate from any tenant database(s)
 // and will have its own connection string.
