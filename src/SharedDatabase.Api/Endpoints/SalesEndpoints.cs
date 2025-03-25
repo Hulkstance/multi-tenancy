@@ -6,15 +6,12 @@ namespace SharedDatabase.Api.Endpoints;
 
 public static class SalesEndpoints
 {
-    private const int DefaultPage = 1;
-    private const int DefaultPageSize = 10;
-
     public static IEndpointRouteBuilder MapSalesEndpoints(this IEndpointRouteBuilder endpoint)
     {
         ArgumentNullException.ThrowIfNull(endpoint);
 
         endpoint.MapGet("api/sales",
-                async (Guid companyId, AppDbContext dbContext, int page = DefaultPage, int pageSize = DefaultPageSize, CancellationToken cancellationToken = default) =>
+                async (Guid companyId, AppDbContext dbContext, CancellationToken cancellationToken = default) =>
                 {
                     var companyExists = await dbContext.Companies
                         .AsNoTracking()
@@ -29,8 +26,6 @@ public static class SalesEndpoints
                         .Include(x => x.Company)
                         .Where(x => x.CompanyId == companyId)
                         .OrderBy(x => x.Id)
-                        .Skip((page - 1) * pageSize)
-                        .Take(pageSize)
                         .ToListAsync(cancellationToken);
 
                     return Results.Ok(sales);
