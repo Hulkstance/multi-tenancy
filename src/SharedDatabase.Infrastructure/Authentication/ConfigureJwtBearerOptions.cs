@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using System.Text;
+﻿using System.Text;
 using Finbuckle.MultiTenant;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,8 +12,7 @@ namespace SharedDatabase.Infrastructure.Authentication;
 
 public class ConfigureJwtBearerOptions(IOptions<JwtOptions> jwtOptions) : IConfigureNamedOptions<JwtBearerOptions>
 {
-    public void Configure(JwtBearerOptions options) =>
-        Configure(JwtBearerDefaults.AuthenticationScheme, options);
+    public void Configure(JwtBearerOptions options) => Configure(JwtBearerDefaults.AuthenticationScheme, options);
 
     public void Configure(string? name, JwtBearerOptions options)
     {
@@ -24,8 +22,6 @@ public class ConfigureJwtBearerOptions(IOptions<JwtOptions> jwtOptions) : IConfi
         }
 
         var key = Encoding.UTF8.GetBytes(jwtOptions.Value.Key);
-        var issuer = jwtOptions.Value.Issuer;
-        var audience = jwtOptions.Value.Audience;
 
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
@@ -35,8 +31,8 @@ public class ConfigureJwtBearerOptions(IOptions<JwtOptions> jwtOptions) : IConfi
             IssuerSigningKey = new SymmetricSecurityKey(key),
             ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
-            ValidIssuer = issuer,
-            ValidAudience = audience,
+            ValidIssuer = jwtOptions.Value.Issuer,
+            ValidAudience = jwtOptions.Value.Audience,
             ValidateIssuer = true,
             ValidateAudience = true,
             ClockSkew = TimeSpan.Zero // We don't tolerate any token where the expiration time is in the past
@@ -46,31 +42,27 @@ public class ConfigureJwtBearerOptions(IOptions<JwtOptions> jwtOptions) : IConfi
         {
             OnTokenValidated = async context =>
             {
-                var identity = context.Principal?.Identities.FirstOrDefault();
-                var tenantClaim = identity?.FindFirst(CustomClaimTypes.TenantIdentifier);
-                var userIdClaim = identity?.FindFirst(ClaimTypes.NameIdentifier);
-
-                if (identity == null || tenantClaim == null || userIdClaim == null)
+                var tenantId = context.Principal?.GetTenantId();
+                if (tenantId is null)
                 {
-                    throw new UnauthorizedException("Authentication Failed.");
+                    throw new UnauthorizedException("Tenant ID is missing from the JWT token");
                 }
 
                 var tenantStore = context.HttpContext.RequestServices.GetRequiredService<IMultiTenantStore<AppTenantInfo>>();
-                var tenant = await tenantStore.TryGetByIdentifierAsync(tenantClaim.Value);
-
-                if (tenant == null)
+                var tenantInfo = await tenantStore.TryGetByIdentifierAsync(tenantId);
+                if (tenantInfo is null)
                 {
-                    throw new UnauthorizedException("Authentication Failed.");
+                    throw new UnauthorizedException($"No tenant found with ID '{tenantId}' in the tenant store");
                 }
 
-                context.HttpContext.SetTenantInfo(tenant, true);
+                context.HttpContext.SetTenantInfo(tenantInfo, true);
             },
             OnAuthenticationFailed = context =>
             {
                 Console.WriteLine($"Authentication failed: {context.Exception.Message}");
                 return Task.CompletedTask;
             },
-            OnForbidden = _ => throw new ForbiddenException("You are not authorized to access this resource.")
+            OnForbidden = _ => throw new ForbiddenException("You are not authorized to access this resource")
         };
     }
 }
