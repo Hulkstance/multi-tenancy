@@ -1,5 +1,5 @@
 ﻿using Finbuckle.MultiTenant.Abstractions;
-using SharedDatabase.Application.MultiTenancy;
+using SharedDatabase.Application.Common.Interfaces;
 
 namespace SharedDatabase.Infrastructure.MultiTenancy;
 

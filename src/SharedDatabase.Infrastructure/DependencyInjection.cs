@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using SharedDatabase.Application.MultiTenancy;
+using SharedDatabase.Application.Common.Interfaces;
 using SharedDatabase.Infrastructure.Authentication;
 using SharedDatabase.Infrastructure.MultiTenancy;
 using SharedDatabase.Infrastructure.Persistence;

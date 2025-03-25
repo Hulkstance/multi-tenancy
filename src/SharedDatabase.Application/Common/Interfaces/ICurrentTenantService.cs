@@ -1,4 +1,4 @@
-﻿namespace SharedDatabase.Application.MultiTenancy;
+﻿namespace SharedDatabase.Application.Common.Interfaces;
 
 public interface ICurrentTenantService
 {
