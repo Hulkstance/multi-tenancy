@@ -7,5 +7,5 @@ public class Sale
     public required DateTime CreatedAt { get; set; }
 
     public required Guid CompanyId { get; set; }
-    public required Company Company { get; set; }
+    public Company Company { get; set; } = null!;
 }
