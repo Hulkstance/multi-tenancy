@@ -7,6 +7,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\SharedDatabase.Domain\SharedDatabase.Domain.csproj" />
+    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

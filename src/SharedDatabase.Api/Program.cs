@@ -1,6 +1,7 @@
 using Finbuckle.MultiTenant;
 using SharedDatabase.Api.Endpoints;
 using SharedDatabase.Infrastructure;
+using SharedDatabase.Infrastructure.Notifications;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ app.UseMultiTenant();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<NotificationHub>("/notifications");
 
 app.MapCompanyEndpoints()
     .MapSalesEndpoints();

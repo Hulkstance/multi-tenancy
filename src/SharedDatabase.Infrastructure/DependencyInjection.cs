@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using SharedDatabase.Application.Common.Interfaces;
 using SharedDatabase.Infrastructure.Authentication;
 using SharedDatabase.Infrastructure.MultiTenancy;
+using SharedDatabase.Infrastructure.Notifications;
 using SharedDatabase.Infrastructure.Persistence;
 
 namespace SharedDatabase.Infrastructure;
@@ -22,7 +23,8 @@ public static class ServiceCollectionExtensions
             .AddPersistence(configuration)
             .AddAuthenticationInternal()
             .AddAuthorizationInternal()
-            .AddMultiTenancy(configuration);
+            .AddMultiTenancy(configuration)
+            .AddNotifications();
     }
 
     private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
@@ -85,9 +87,19 @@ public static class ServiceCollectionExtensions
             })
             .AddMultiTenant<AppTenantInfo>()
             .WithClaimStrategy(CustomClaimTypes.TenantIdentifier)
+            .WithStrategy<SignalRContextItemsStrategy>(ServiceLifetime.Singleton)
             .WithEFCoreStore<TenantDbContext, AppTenantInfo>();
 
         services.AddScoped<ICurrentTenantService, CurrentTenantService>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddNotifications(this IServiceCollection services)
+    {
+        services.AddSignalR();
+
+        services.AddScoped<INotificationSender, NotificationSender>();
 
         return services;
     }
